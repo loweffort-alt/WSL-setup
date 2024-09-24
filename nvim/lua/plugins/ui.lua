@@ -2,59 +2,25 @@ return {
   -- messages, cmdline and the popupmenu
   {
     "folke/noice.nvim",
-    opts = function(_, opts)
-      table.insert(opts.routes, {
-        filter = {
-          event = "notify",
-          find = "No information available",
+    config = function()
+      require("noice").setup({
+        cmdline = {
+          view = "cmdline",
         },
-        opts = { skip = true },
-      })
-      local focused = true
-      vim.api.nvim_create_autocmd("FocusGained", {
-        callback = function()
-          focused = true
-        end,
-      })
-      vim.api.nvim_create_autocmd("FocusLost", {
-        callback = function()
-          focused = false
-        end,
-      })
-      table.insert(opts.routes, 1, {
-        filter = {
-          cond = function()
-            return not focused
-          end,
+        presets = {
+          bottom_search = true,
+          command_palette = true,
+          lsp_doc_border = true,
         },
-        view = "notify_send",
-        opts = { stop = false },
+        -- views = {
+        --   cmdline_popup = {
+        --     filter_options = {},
+        --     win_options = {
+        --       winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+        --     },
+        --   },
+        -- },
       })
-
-      opts.commands = {
-        all = {
-          -- options for the message history that you get with `:Noice`
-          view = "split",
-          opts = { enter = true, format = "details" },
-          filter = {},
-        },
-      }
-
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "markdown",
-        callback = function(event)
-          vim.schedule(function()
-            require("noice.text.markdown").keys(event.buf)
-          end)
-        end,
-      })
-
-      opts.lsp.hover = {
-        enabled = true,
-        silent = true,
-        view = nil,
-      }
-      opts.presets.lsp_doc_border = true
     end,
   },
   {
@@ -66,41 +32,14 @@ return {
       width = 60,
     },
   },
+
+  -- Notifications
   {
     "rcarriga/nvim-notify",
     opts = {
+      render = "compact",
       background_colour = "#1a1b26",
       timeout = 5000,
-    },
-  },
-
-  -- animations
-  {
-    "echasnovski/mini.animate",
-    event = "VeryLazy",
-    opts = function(_, opts)
-      opts.scroll = {
-        enable = false,
-      }
-    end,
-  },
-
-  -- buffer line
-  {
-    "akinsho/bufferline.nvim",
-    event = "VeryLazy",
-    enabled = false,
-    keys = {
-      { "<Tab>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
-      { "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev tab" },
-    },
-    opts = {
-      options = {
-        mode = "tabs",
-        -- separator_style = "slant",
-        show_buffer_close_icons = false,
-        show_close_icon = false,
-      },
     },
   },
 
@@ -108,10 +47,20 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
+    requires = { "nvim-tree/nvim-web-devicons", opt = true },
     opts = {
       options = {
         -- globalstatus = false,
         theme = "everforest",
+        icons_enabled = true,
+      },
+      sections = {
+        lualine_a = {
+          {
+            "mode",
+            icon = "󱗞",
+          },
+        },
       },
     },
   },
@@ -139,7 +88,30 @@ return {
       })
     end,
   },
-
+  {
+    "echasnovski/mini.nvim",
+    version = false,
+    config = function()
+      require("mini.animate").setup({
+        resize = {
+          enable = false,
+        },
+        open = {
+          enable = false,
+        },
+        close = {
+          enable = false,
+        },
+        scroll = {
+          enable = true,
+          timing = require("mini.animate").gen_timing.linear({ duration = 100, unit = "total" }),
+          subscroll = require("mini.animate").gen_subscroll.equal({
+            move = true,
+          }),
+        },
+      })
+    end,
+  },
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
@@ -153,7 +125,6 @@ return {
     },
     keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
   },
-
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
