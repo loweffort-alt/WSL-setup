@@ -31,11 +31,7 @@ local harpoon = require("harpoon")
 local oil = require("oil")
 local which_key = require("which-key")
 which_key.register({
-  ["<leader>"] = {
-    o = {
-      name = "Obsidian",
-    },
-  },
+  { "<leader>o", group = "Obsidian" },
 })
 harpoon:setup()
 oil.setup()

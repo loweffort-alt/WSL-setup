@@ -30,6 +30,7 @@ alias obsidian="/mnt/c/users/farfa/AppData/Local/Programs/obsidian/Obsidian.exe"
 
 # Alias NPM
 alias nrd="npm run dev"
+alias nrs="npm run start"
 alias ni="npm install $1"
 
 # Alias fish
