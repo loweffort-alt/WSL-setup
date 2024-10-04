@@ -3,7 +3,9 @@ if status is-interactive
     eval ( /home/linuxbrew/.linuxbrew/bin/brew shellenv )
 end
 
+# Estas lineas son para configrurar la instalación de ruby con fish
 
+set -gx PATH $HOME/.rbenv/bin $PATH
 if command -v rbenv >/dev/null
     status --is-interactive; and source (rbenv init - | psub)
 end
