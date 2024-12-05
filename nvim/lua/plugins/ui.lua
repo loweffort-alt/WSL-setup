@@ -50,17 +50,9 @@ return {
     requires = { "nvim-tree/nvim-web-devicons", opt = true },
     opts = {
       options = {
-        -- globalstatus = false,
-        theme = "everforest",
+        globalstatus = false,
+        theme = "kanagawa-dragon",
         icons_enabled = true,
-      },
-      sections = {
-        lualine_a = {
-          {
-            "mode",
-            icon = "󱗞",
-          },
-        },
       },
     },
   },
@@ -89,27 +81,6 @@ return {
     end,
   },
   {
-    "echasnovski/mini.nvim",
-    version = false,
-    config = function()
-      require("mini.animate").setup({
-        resize = {
-          enable = false,
-        },
-        open = {
-          enable = false,
-        },
-        close = {
-          enable = false,
-        },
-        scroll = {
-          enable = true,
-          timing = require("mini.animate").gen_timing.linear({ duration = 100, unit = "total" }),
-        },
-      })
-    end,
-  },
-  {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
     opts = {
@@ -121,28 +92,5 @@ return {
       },
     },
     keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
-  },
-  {
-    "nvimdev/dashboard-nvim",
-    event = "VimEnter",
-    opts = function(_, opts)
-      local logo = [[
-                      ░░░░░░      ░░░░░░                      
-                    ░░░░░░░░░░  ░░░░░░░░░░                    
-                  ░░░░░░░░░░░░░░░░░░░░░░░░░░                  
-                ░░░░░░░░░░▒▒▒▒░░▒▒▒▒░░░░░░░░░░                
-              ░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░              
-  ▒▒        ░░░░░░▒▒▒▒▒▒▒▒▒▒██▒▒██▒▒▒▒▒▒▒▒▒▒░░░░░░        ▒▒  
-▒▒░░    ░░░░░░░░▒▒▒▒▒▒▒▒▒▒████▒▒████▒▒▒▒▒▒▒▒▒▒░░░░░░░░    ░░▒▒
-▒▒▒▒░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒██████▒▒██████▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒
-██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒██████▓▓██▒▒██████▒▒▓▓██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██
-  ████▒▒▒▒▒▒████▒▒▒▒██████████  ██████████▒▒▒▒████▒▒▒▒▒▒▒▒██  
-    ████████████████████████      ████████████████████████    
-      ██████████████████              ██████████████████      
-          ██████████                      ██████████          
-]]
-      logo = string.rep("\n", 8) .. logo .. "\n\n"
-      opts.config.header = vim.split(logo, "\n")
-    end,
   },
 }

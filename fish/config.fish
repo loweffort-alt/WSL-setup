@@ -40,12 +40,16 @@ alias cfish="nvim $HOME/.config/fish/config.fish"
 alias cnvim="nvim $HOME/.config/nvim/init.lua"
 alias czellij="nvim $HOME/.config/zellij/config.kdl"
 alias rfish="source $HOME/.config/fish/config.fish"
+alias fzfbat='fzf --preview="bat --theme=gruvbox-dark --color=always {}"'
+alias fzfnvim='nvim (fzf --preview="bat --theme=gruvbox-dark --color=always {}")'
 
 # Alias Copy and Paste
 alias copy='clip.exe'
 alias paste='powershell.exe -Command "Get-Clipboard"'
 
 # Uncommment to activate Tmux as default
+
+starship init fish | source
 
 # if status is-interactive
 #     and not set -q TMUX
@@ -90,3 +94,7 @@ set -g fish_pager_color_progress $comment
 set -g fish_pager_color_prefix $cyan
 set -g fish_pager_color_completion $foreground
 set -g fish_pager_color_description $comment
+
+# Overrides
+set -g theme_newline_cursor yes
+set -g theme_display_date no
