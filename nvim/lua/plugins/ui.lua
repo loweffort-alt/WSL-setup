@@ -50,9 +50,23 @@ return {
     requires = { "nvim-tree/nvim-web-devicons", opt = true },
     opts = {
       options = {
+<<<<<<< HEAD
         globalstatus = false,
         theme = "kanagawa-dragon",
         icons_enabled = true,
+=======
+        -- globalstatus = false,
+        theme = "everforest",
+        icons_enabled = true,
+      },
+      sections = {
+        lualine_a = {
+          {
+            "mode",
+            icon = "󱗞",
+          },
+        },
+>>>>>>> 9151349 (Nvim 2024v GentlemanDots/nvim)
       },
     },
   },
@@ -80,6 +94,33 @@ return {
       })
     end,
   },
+<<<<<<< HEAD
+=======
+  {
+    "echasnovski/mini.nvim",
+    version = false,
+    config = function()
+      require("mini.animate").setup({
+        resize = {
+          enable = false,
+        },
+        open = {
+          enable = false,
+        },
+        close = {
+          enable = false,
+        },
+        scroll = {
+          enable = true,
+          timing = require("mini.animate").gen_timing.linear({ duration = 100, unit = "total" }),
+          subscroll = require("mini.animate").gen_subscroll.equal({
+            move = true,
+          }),
+        },
+      })
+    end,
+  },
+>>>>>>> 9151349 (Nvim 2024v GentlemanDots/nvim)
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
@@ -92,5 +133,31 @@ return {
       },
     },
     keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
+<<<<<<< HEAD
+=======
+  },
+  {
+    "nvimdev/dashboard-nvim",
+    event = "VimEnter",
+    opts = function(_, opts)
+      local logo = [[
+                      ░░░░░░      ░░░░░░                      
+                    ░░░░░░░░░░  ░░░░░░░░░░                    
+                  ░░░░░░░░░░░░░░░░░░░░░░░░░░                  
+                ░░░░░░░░░░▒▒▒▒░░▒▒▒▒░░░░░░░░░░                
+              ░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░              
+  ▒▒        ░░░░░░▒▒▒▒▒▒▒▒▒▒██▒▒██▒▒▒▒▒▒▒▒▒▒░░░░░░        ▒▒  
+▒▒░░    ░░░░░░░░▒▒▒▒▒▒▒▒▒▒████▒▒████▒▒▒▒▒▒▒▒▒▒░░░░░░░░    ░░▒▒
+▒▒▒▒░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒██████▒▒██████▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒
+██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒██████▓▓██▒▒██████▒▒▓▓██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██
+  ████▒▒▒▒▒▒████▒▒▒▒██████████  ██████████▒▒▒▒████▒▒▒▒▒▒▒▒██  
+    ████████████████████████      ████████████████████████    
+      ██████████████████              ██████████████████      
+          ██████████                      ██████████          
+]]
+      logo = string.rep("\n", 8) .. logo .. "\n\n"
+      opts.config.header = vim.split(logo, "\n")
+    end,
+>>>>>>> 9151349 (Nvim 2024v GentlemanDots/nvim)
   },
 }
